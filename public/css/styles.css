@@ -19,8 +19,6 @@ body {
   background-color: #101010;
 }
 
-
-
 #nav {
     width: 90%;
     font-size: 1.375rem;
@@ -276,6 +274,7 @@ a:hover {
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
 }
+
 .youtube_embed iframe {
     position: absolute;
     top: 0;

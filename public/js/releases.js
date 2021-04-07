@@ -49,7 +49,7 @@ class Releases extends React.Component {
 
 ReactDOM.render(
 	<Releases />,
-	document.getElementById('releases')
+	document.getElementById('release_content')
 )
 
 

@@ -9,8 +9,13 @@ class Releases extends React.Component {
 		const items = [];
 		const releases = [
 			{
-				title: "Never Break Your Heart (2021)",
+				title: "Give Me a Moment (2021)",
 				credits: "",
+				id: "tRVGeC2duaI"
+			},
+			{
+				title: "Never Break Your Heart (2021)",
+				credits: "Guest vocals by Anna Hiort Han",
 				id: "bjyRbiWo8R4"
 			},
 			{

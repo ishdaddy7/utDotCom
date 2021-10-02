@@ -3,6 +3,13 @@
 class SocialContent extends React.Component {
 	constructor(props) {
 		super(props)
+		this.socialClickTrack = this.socialClickTrack.bind(this);
+	}
+
+	socialClickTrack(e) {
+		analytics.track('Link Clicked', {
+			menuItem: e.target.innerText
+		});
 	}
 
 	render() {
@@ -43,7 +50,7 @@ class SocialContent extends React.Component {
 		for (const [index, value] of socialData.entries()) {
 			let item = (
 				<div key={index} className="col-2">
-					<a href={value.url} target="_blank">
+					<a href={value.url} target="_blank" onClick={this.socialClickTrack}>
 						<img height="32" width="32" src={value.icon} />
 					{value.site}
 					</a>

@@ -3,8 +3,15 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>Unicorn Taxidermy</title>
+	<title>Unicorn Taxidermy - Official Site</title>
+	<meta name="description" content="Music project by songwriter/producer Sean Han">
 	<link rel="stylesheet" href="css/styles.css" />
+	<script>
+	!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="WSkXPvgckIVxKUPYFoXBNFX7woobfiZW";analytics.SNIPPET_VERSION="4.13.2";
+	analytics.load("WSkXPvgckIVxKUPYFoXBNFX7woobfiZW");
+	analytics.page();
+	}}();
+</script>
 	<script src="https://unpkg.com/scrollreveal"></script>
 	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <!-- Load React. -->
@@ -14,15 +21,6 @@
 	
 	<!-- Don't use this in production (oopsies): -->
 	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYLXZXKEM"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-9EYLXZXKEM');
-	</script>
 </head>
 <body>
 
@@ -32,16 +30,16 @@
 				<a href="#">UNICORN TAXIDERMY</a>
 			</div>
 			<div class=col-2>
-				<a href="#follow">FOLLOW</a>
+				<a href="#follow" id="nav-follow" onclick="trackClickEvent(this.id)">FOLLOW</a>
 			</div>
 			<div class=col-2>
-				<a href="#releases">RELEASES</a>
+				<a href="#releases" id="nav-releases" onclick="trackClickEvent(this.id)">RELEASES</a>
 			</div>
 			<div class=col-2>
-				<a href="#about">ABOUT</a>
+				<a href="#about" id="nav-about" onclick="trackClickEvent(this.id)">ABOUT</a>
 			</div>
 			<div class=col-2>
-				<a href="#contact">CONTACT</a>
+				<a href="#contact" id="nav-contact" onclick="trackClickEvent(this.id)">CONTACT</a>
 			</div>
 		</div>
 		<div class="row">
@@ -70,7 +68,7 @@
 		<div class="row">
 			<div class="col-12">
 				<p>
-					Hi I'm Sean - I'm a San Francisco (sorta) based producer and musician, and Unicorn Taxidermy is my home studio project that I started during COVID after many years away from making music. I plan to be releasing a few songs - or more - every year, so hope you'll <a href="#follow">follow</a> the project on Spotify, etc, or check back here from time to time for new material!
+					Hi I'm Sean Han - I'm a San Francisco (sorta) based producer and musician, and Unicorn Taxidermy is my home studio project that I started during COVID after many years away from making music. I plan to be releasing a few songs - or more - every year, so hope you'll <a href="#follow">follow</a> the project on Spotify, etc, or check back here from time to time for new material!
 				</p>
 				<p>
 					Btw, if you see videos/songs here or there by XANHAN, that was the previous iteration of this project where I put out a couple tracks.
@@ -93,7 +91,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<script>
 		ScrollReveal().reveal('#about');
 		ScrollReveal().reveal('#social');
@@ -103,5 +100,13 @@
 	<script type="text/babel" src="js/releases.js"></script>
 	<script type="text/babel" src="js/past_work.js"></script>
 	<script type="text/babel" src="js/social_content.js"></script>
+	<script type="text/javascript">
+		//track nav links
+		function trackClickEvent(elementId) {
+			analytics.track('Nav Click', {
+				menuItem: elementId
+			});
+		}
+	</script>
 </body>
 </html>

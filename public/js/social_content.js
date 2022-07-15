@@ -17,7 +17,7 @@ class SocialContent extends React.Component {
 		const socialData = [
 			{
 				site: "Spotify",
-				url: "https://open.spotify.com/artist/5ygUepVj1u54LMa6OG5QWa?si=NC6yYk1KQNm-HFljxvc8VQ",
+				url: "https://spoti.fi/3y5smxE",
 				icon: "/images/spotify.png"
 			},
 			{

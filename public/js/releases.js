@@ -9,6 +9,21 @@ class Releases extends React.Component {
 		const items = [];
 		const releases = [
 			{
+				title: "Take Me By The Heart (2022)",
+				credits: "",
+				id: "rQ8lZap8IZ0"
+			},
+			{
+				title: "Into The Sky (2022)",
+				credits: "",
+				id: "M9f2cUdSs1k"
+			},
+			{
+				title: "The Bags We Packed (2021)",
+				credits: "",
+				id: "NuQRc0GUmc0"
+			},
+			{
 				title: "Pull Me To The Ground (2021)",
 				credits: "",
 				id: "Zwzl43Prw7E"

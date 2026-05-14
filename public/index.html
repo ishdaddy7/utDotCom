@@ -231,7 +231,7 @@
             },
             {
                 id: 'stairway-to-heaven',
-                title: "STAIRWAY - MULTI-INSTRUMENT COVER",
+                title: "STAIRWAY - MULTI-INST COVER",
                 video: 'images/stairway_bg.mp4',
                 cover: 'images/favicon.png',
                 spotify: '', 
@@ -546,6 +546,14 @@
             playBtn.style.display = 'none';
             pauseBtn.style.display = 'inline-flex';
         };
+
+        // Auto-advance to next song
+        video.addEventListener('ended', () => {
+            let next = currentSongIndex + 1;
+            if (next >= songs.length) next = 0;
+            loadSong(next);
+            video.play(); // Start playing the new song
+        });
 
         // Progress Bar Logic
         function formatTime(seconds) {

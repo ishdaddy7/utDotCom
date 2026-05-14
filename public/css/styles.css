@@ -56,8 +56,7 @@ body {
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 40px;
-    padding-top: 60px; /* Space for nav */
+    padding: 30px; /* Reduced from 40px */
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     position: relative;
@@ -77,11 +76,10 @@ body {
 }
 
 .card-nav {
-    position: absolute;
-    top: 20px;
-    right: 25px;
     display: flex;
+    justify-content: flex-end;
     gap: 15px;
+    margin-bottom: 20px;
     z-index: 10;
 }
 
@@ -540,11 +538,20 @@ footer {
 /* RESPONSIVE */
 @media (max-width: 480px) {
     .promo-card {
-        padding: 30px 20px;
-        height: 700px; /* Slightly shorter on mobile */
+        padding: 20px 15px; /* Even tighter for small screens */
+        height: 700px;
     }
     
     .release-title {
-        font-size: 1.8rem;
+        font-size: 1.3rem; /* Small enough to prevent 4-line wrapping */
+    }
+
+    .album-cover {
+        width: 80px; /* Slightly smaller to give text more room */
+        height: 80px;
+    }
+
+    .bio-content {
+        -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
     }
 }

@@ -1,109 +1,580 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>Unicorn Taxidermy - Official Site</title>
-	<meta name="description" content="Music project by songwriter/producer Sean Han">
-	<link rel="stylesheet" href="css/styles.css" />
-	<script>
-	!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="WSkXPvgckIVxKUPYFoXBNFX7woobfiZW";analytics.SNIPPET_VERSION="4.13.2";
-	analytics.load("WSkXPvgckIVxKUPYFoXBNFX7woobfiZW");
-	analytics.page();
-	}}();
-</script>
-	<script src="https://unpkg.com/scrollreveal"></script>
-	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-	<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-	<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
-	
-	<!-- Don't use this in production (oopsies): -->
-	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Taxidermy - Jukebox</title>
+    <meta name="description" content="Official music player for Unicorn Taxidermy (Sean Han)">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="images/letsgo_bg.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    
+    <main class="container">
+        <div class="promo-card">
+            <nav class="card-nav">
+                <button id="nav-jukebox" class="nav-link active">JUKEBOX</button>
+                <button id="nav-about" class="nav-link">ABOUT</button>
+            </nav>
 
-	<div class="container">
-		<div class="row" id="nav">
-			<div class="col-4">
-				<a href="#">UNICORN TAXIDERMY</a>
-			</div>
-			<div class=col-2>
-				<a href="#follow" id="nav-follow" onclick="trackClickEvent(this.id)">FOLLOW</a>
-			</div>
-			<div class=col-2>
-				<a href="#releases" id="nav-releases" onclick="trackClickEvent(this.id)">RELEASES</a>
-			</div>
-			<div class=col-2>
-				<a href="#about" id="nav-about" onclick="trackClickEvent(this.id)">ABOUT</a>
-			</div>
-			<div class=col-2>
-				<a href="#contact" id="nav-contact" onclick="trackClickEvent(this.id)">CONTACT</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<a id="follow">
-					<h2 class="font-light">FOLLOW</h2>
-				</a>
-			</div>
-		</div>
-		<div class="row" id="social_content">
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<a id="releases">
-					<h2 class="font-light">RELEASES</h2>
-				</a>
-			</div>
-		</div>
-		<div class="row" id="release_content">
-		</div>
-		<div class="row" id="about">
-			<div class="col-12">
-				<h2 class="font-light">ABOUT</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<p>
-					Hi I'm Sean Han - I'm a Bay Area based producer and musician, and Unicorn Taxidermy is my home studio project that I started during COVID after many years away from making music. I plan to release a few songs every year, so hope you'll <a href="#follow">follow</a> the project on Spotify, etc, or check back here from time to time for new material!
-				</p>
-				<p>
-					Music is only a hobby these days, but I was once an aspiring musician in NYC. Feel free to check out some of my past work below:
-				</p>
-			</div>
-		</div>
-		<div class="row" id="past_work">
-		</div>
-		<div class="row" id="contact">
-			<div class="col-12">
-				<h2 class="font-light">CONTACT</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<p>Feel free to get in touch at unicorntaxidermymusic @ gmail dot com</p>
-			</div>
-		</div>
-	</div>
-	<script>
-		ScrollReveal().reveal('#about');
-		ScrollReveal().reveal('#social');
-		ScrollReveal().reveal('#contact');
-	</script>
-	<!-- Load our React components. -->
-	<script type="text/babel" src="js/releases.js"></script>
-	<script type="text/babel" src="js/past_work.js"></script>
-	<script type="text/babel" src="js/social_content.js"></script>
-	<script type="text/javascript">
-		//track nav links
-		function trackClickEvent(elementId) {
-			analytics.track('Nav Click', {
-				menuItem: elementId
-			});
-		}
-	</script>
+            <div id="jukebox-view" class="view-content">
+                <header>
+                    <h1>UNICORN TAXIDERMY</h1>
+                    <div class="player-shell">
+                        <div class="header-main">
+                            <img id="album-cover" class="album-cover" src="" alt="" style="display: none;">
+                            <div class="title-info">
+                                <h2 class="release-title">
+                                    <span id="song-title-text">LET'S GO!</span>
+                                    <span id="pre-release-badge" class="pre-release-badge" style="display: none;">PRE-RELEASE</span>
+                                </h2>
+                            </div>
+                        </div>
+                        
+                        <div class="player-controls">
+                            <button id="prev-btn" class="ctrl-btn" aria-label="Previous">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                            </button>
+                            
+                            <button id="play-btn" class="ctrl-btn" aria-label="Play">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                            
+                            <button id="pause-btn" class="ctrl-btn" aria-label="Pause" style="display: none;">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                            </button>
+                            
+                            <button id="next-btn" class="ctrl-btn" aria-label="Next">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                            </button>
+
+                            <button id="mute-toggle" class="ctrl-btn is-muted" aria-label="Toggle Mute">
+                                <svg class="speaker-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                    <line id="mute-line" x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2" />
+                                </svg>
+                                <span id="mute-text">MUTED</span>
+                            </button>
+                        </div>
+
+                        <div class="progress-shell">
+                            <input type="range" id="progress-bar" value="0" min="0" step="0.1">
+                            <div class="time-display">
+                                <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="streaming-links">
+                    <!-- FULL WIDTH -->
+                    <a href="#" target="_blank" id="primary-link" class="stream-btn spotify full-width">
+                        <img src="images/spotify.png" alt="Spotify">
+                        <span>Listen on Spotify</span>
+                    </a>
+                    
+                    <!-- GRID 2x2 -->
+                    <div class="btn-grid">
+                        <a href="#" target="_blank" id="link-apple" class="stream-btn apple">
+                            <img src="images/apple.svg" alt="Apple Music">
+                            <span>Apple Music</span>
+                        </a>
+                        <a href="#" target="_blank" id="link-youtube" class="stream-btn youtube">
+                            <img src="images/social-media-icon-_0000s_0016_youtube.png" alt="YouTube">
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" target="_blank" id="link-amazon" class="stream-btn amazon">
+                            <div class="icon-placeholder">AM</div>
+                            <span>Amazon</span>
+                        </a>
+                        <a href="#" target="_blank" id="link-tidal" class="stream-btn tidal">
+                            <div class="icon-placeholder">T</div>
+                            <span>Tidal</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="countdown-timer" class="countdown-container" style="display: none;">
+                    <h3 class="countdown-label" id="countdown-date-label">COMING MAY 21 2026</h3>
+                    <div class="timer-grid">
+                        <div class="timer-item"><span id="days">00</span><small>DAYS</small></div>
+                        <div class="timer-item"><span id="hours">00</span><small>HOURS</small></div>
+                        <div class="timer-item"><span id="mins">00</span><small>MINS</small></div>
+                        <div class="timer-item"><span id="secs">00</span><small>SECS</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="about-view" class="view-content" style="display: none;">
+                <header>
+                    <h1 class="about-header">THE WORKSHOP</h1>
+                </header>
+                <div class="bio-content">
+                    <p>
+                        Thanks for stopping by. Unicorn Taxidermy is a home studio project I started back in 2020.
+                    </p>
+                    <p>
+                        After a long break from the NYC music scene—where I didn't quite make it, but had a great time trying to be a guitarist and producer—I started messing around with music again during the lockdowns.
+                    </p>
+                    <p>
+                        It's strictly a hobby these days. No goals, no stress—just late-night synths, loud guitars, and whatever else feels right. It's basically a place for me to get some ideas out of my head. 
+                    </p>
+                    <p>
+                        Soo welcome to the workshop or something like that.
+                    </p>
+                    <p>
+                        Feel free to check out my old band <a href="https://open.spotify.com/artist/7t30ZMfNvgnxtwFDL5RzTj?si=lEgbEPatTIu5sp4SlYFPvQ" target="_blank">Blip Blip Bleep</a> and collaborations with <a href="https://www.youtube.com/watch?v=G29d6RDSK1c" target="_blank">Miles Fisher</a> and <a href="https://www.youtube.com/watch?v=lJW-l2Vw0g4" target="_blank">Kayce Laine</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <h3 class="social-header">GET IN TOUCH</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/unicorn_taxidermy/" target="_blank">
+                        <img src="images/social-media-icon-_0000s_0017_instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.tiktok.com/@unicorntaxidermy" target="_blank">
+                        <div class="social-placeholder">
+                            <svg viewBox="0 0 16 16" fill="black">
+                                <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.facebook.com/UnicornTaxidermy" target="_blank">
+                        <img src="images/social-media-icon-_0000s_0020_facebook.png" alt="Facebook">
+                    </a>
+                </div>
+            </div>
+
+            <footer>
+                <p>&copy; 2026 UNICORN TAXIDERMY</p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        const video = document.getElementById('bg-video');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const muteToggle = document.getElementById('mute-toggle');
+        const muteLine = document.getElementById('mute-line');
+        const muteText = document.getElementById('mute-text');
+        const releaseTitle = document.querySelector('.release-title');
+        
+        // Progress Bar Elements
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const durationDisplay = document.getElementById('duration');
+
+        // Navigation
+        const navJukebox = document.getElementById('nav-jukebox');
+        const navAbout = document.getElementById('nav-about');
+        const jukeboxView = document.getElementById('jukebox-view');
+        const aboutView = document.getElementById('about-view');
+
+        const songTitleText = document.getElementById('song-title-text');
+        const preReleaseBadge = document.getElementById('pre-release-badge');
+        const albumCover = document.getElementById('album-cover');
+
+        // Streaming Links Containers
+        const primaryLink = document.getElementById('primary-link');
+        const appleLink = document.getElementById('link-apple');
+        const youtubeLink = document.getElementById('link-youtube');
+        const amazonLink = document.getElementById('link-amazon');
+        const tidalLink = document.getElementById('link-tidal');
+        
+        const countdownContainer = document.getElementById('countdown-timer');
+        let countdownInterval;
+
+        const songs = [
+            {
+                id: 'lets-go',
+                title: "LET'S GO!",
+                video: 'images/letsgo_bg.mp4',
+                cover: 'images/letsgo_cover.png',
+                spotify: 'https://open.spotify.com/track/0XCNpIcKU4W38Xq9k5cpFM',
+                apple: 'https://music.apple.com/us/album/lets-go-single/1568456789',
+                youtube: 'https://www.youtube.com/watch?v=TNPdfavtYJ4',
+                amazon: 'https://music.amazon.com/albums/B095Y5Y9H2',
+                tidal: 'https://tidal.com/browse/track/185562095',
+                releaseDate: '2026-05-21T04:00:00-07:00' // PDT (UTC-7)
+            },
+            {
+                id: 'touch-the-stars',
+                title: "TOUCH THE STARS (feat. Factual Acts)",
+                video: 'images/tts_bg.mp4',
+                cover: 'images/tts.png',
+                spotify: 'https://open.spotify.com/track/3wKTtlBtOcnyKhqBRs24Qn?si=5fac78bd4c434024', 
+                apple: 'https://music.apple.com/us/song/touch-the-stars-feat-factual-acts/1809488523', 
+                youtube: 'https://youtu.be/1IxMDjMs3tY',
+                amazon: 'https://youtu.be/1IxMDjMs3tY?si=tHof3s2hPDTxABFh', 
+                tidal: 'https://tidal.com/track/431094689/u' 
+            },
+            {
+                id: 'take-me-by-the-heart',
+                title: "TAKE ME BY THE HEART",
+                video: 'images/tmbth_bg.mp4',
+                cover: 'images/tmbth_cover.jpeg',
+                spotify: 'https://open.spotify.com/track/7d0FcL5nAAVHn9p8x1dLmo?si=32d20fbe49fd4e2e',
+                apple: 'https://music.apple.com/us/album/take-me-by-the-heart-single/1614544444',
+                youtube: 'https://www.youtube.com/watch?v=rQ8lZap8IZ0',
+                amazon: 'https://music.amazon.com/albums/B09S6S6Z6Z',
+                tidal: 'https://tidal.com/album/232423418/u'
+            },
+            {
+                id: 'stairway-to-heaven',
+                title: "STAIRWAY - MULTI-INSTRUMENT COVER",
+                video: 'images/stairway_bg.mp4',
+                cover: 'images/favicon.png',
+                spotify: '', 
+                apple: '', 
+                youtube: 'https://youtu.be/JXQHNXXH-rY',
+                amazon: '', 
+                tidal: '' 
+            },
+            {
+                id: 'give-me-a-moment',
+                title: "GIVE ME A MOMENT",
+                video: 'images/gmam_bg.mp4',
+                cover: 'images/gmam_1.jpg',
+                spotify: 'https://open.spotify.com/track/5R5MdaB5aA2KRQFU2kn0bu?si=bed8f0c21130434e',
+                apple: 'https://music.apple.com/us/album/give-me-a-moment-single/1564559421',
+                youtube: 'https://youtu.be/tRVGeC2duaI',
+                amazon: 'https://music.amazon.com/albums/B095Y5Y9H2',
+                tidal: 'https://tidal.com/album/181424749/'
+            },
+            {
+                id: 'into-the-sky',
+                title: "INTO THE SKY",
+                video: 'images/its_bg.mp4',
+                cover: 'images/intoTHEsky5.jpeg',
+                spotify: 'https://open.spotify.com/track/18S7wXwebXkA783cpNieWo?si=006fc831395646ef', 
+                apple: 'https://music.apple.com/us/song/into-the-sky/1606284945', 
+                youtube: 'https://youtu.be/M9f2cUdSs1k', 
+                amazon: 'https://music.amazon.com/tracks/B09QT7YBN5', 
+                tidal: 'https://tidal.com/track/213293440/' 
+            },
+            {
+                id: 'feel-good-sad-song',
+                title: "FEEL GOOD SAD SONG",
+                video: 'images/fgss_bg.mp4',
+                cover: 'images/fgss.jpg',
+                spotify: 'https://open.spotify.com/track/3cqykcoYVN1TgaJtWcihF2?si=47048e2be42942fa',
+                apple: 'https://music.apple.com/us/song/feel-good-sad-song/1699048477',
+                youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                amazon: 'https://music.amazon.com/albums/B0CCPQN13N',
+                tidal: 'https://tidal.com/album/307049776/'
+            },            
+            {
+                id: 'levitating-after-midnight',
+                title: "LEVITATING AFTER MIDNIGHT (MASHUP)",
+                video: 'images/levitating_bg.mp4',
+                cover: 'images/favicon.png',
+                spotify: '', 
+                apple: '', 
+                youtube: 'https://youtu.be/mud0VpQnHJY?si=wD2LSbSDWmzqJHbs',
+                amazon: '', 
+                tidal: '' 
+            },
+            {
+                id: 'lift-the-weight',
+                title: "LIFT THE WEIGHT",
+                video: 'images/ltw_bg.mp4',
+                cover: 'images/lifttheweight.jpeg',
+                spotify: 'https://open.spotify.com/track/7CU62pvBhtoaGouGDs4rCY?si=5007887278ac4612',
+                apple: 'https://music.apple.com/us/song/lift-the-weight/1670251974',
+                youtube: 'https://youtu.be/Q4xemX8TV58',
+                amazon: 'https://youtu.be/Q4xemX8TV58',
+                tidal: 'https://tidal.com/track/275366593/'
+            },
+            {
+                id: 'all-too-well',
+                title: "ALL TOO WELL / CLOCKS",
+                video: 'images/atw_bg.mp4',
+                cover: 'images/favicon.png',
+                spotify: '', 
+                apple: '', 
+                youtube: 'https://youtu.be/0hkohOK15pQ?si=CDeyUuxcivQEoi5a',
+                amazon: '', 
+                tidal: '' 
+            },
+            {
+                id: 'pull-me-to-the-ground',
+                title: "PULL ME TO THE GROUND",
+                video: 'images/pmttg_bg.mp4',
+                cover: 'images/pmttg2.jpeg',
+                spotify: 'https://open.spotify.com/track/3ahFaVNHDEwzGpTN9MueOI?si=a1bd3d5c148349af',
+                apple: 'https://music.apple.com/us/song/pull-me-to-the-ground/1564401935', 
+                youtube: 'https://youtu.be/Zwzl43Prw7E',
+                amazon: 'https://music.amazon.com/tracks/B0932C7QLM',
+                tidal: 'https://tidal.com/track/181311204/'
+            },
+            {
+                id: 'headlights-in-the-darkness',
+                title: "HEADLIGHTS IN THE DARKNESS",
+                video: 'images/headlights_bg.mp4',
+                cover: 'images/coverHITD2.PNG',
+                spotify: 'https://open.spotify.com/track/6M4FtyxmAHygLk6niIACbm?si=49633369bfb146a2',
+                apple: 'https://music.apple.com/us/song/headlights-in-the-darkness/1727951427',
+                youtube: 'https://youtu.be/y3fVJnUGGho',
+                amazon: 'https://music.amazon.com/tracks/B0CTGM5BXZ', 
+                tidal: 'https://tidal.com/track/342440212/' 
+            }
+        ];
+
+        let currentSongIndex = 0;
+
+        function startCountdown(targetDate) {
+            clearInterval(countdownInterval);
+            const target = new Date(targetDate).getTime();
+            
+            // Format label: "COMING MAY 21 2026"
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = new Date(targetDate).toLocaleDateString('en-US', options).toUpperCase();
+            document.getElementById('countdown-date-label').innerText = `COMING ${dateStr}`;
+
+            function update() {
+                const now = new Date().getTime();
+                const diff = target - now;
+                
+                if (diff <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownContainer.style.display = 'none';
+                    loadSong(currentSongIndex); // Refresh to normal mode
+                    return;
+                }
+                
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').innerText = d.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('mins').innerText = m.toString().padStart(2, '0');
+                document.getElementById('secs').innerText = s.toString().padStart(2, '0');
+            }
+            
+            countdownContainer.style.display = 'block';
+            update();
+            countdownInterval = setInterval(update, 1000);
+        }
+
+        function loadSong(index, updateURL = true) {
+            currentSongIndex = index;
+            const song = songs[currentSongIndex];
+            const now = new Date();
+            const isPreRelease = song.releaseDate && new Date(song.releaseDate) > now;
+
+            // Update UI
+            songTitleText.innerText = song.title;
+            
+            if (isPreRelease) {
+                preReleaseBadge.style.display = 'inline-block';
+            } else {
+                preReleaseBadge.style.display = 'none';
+            }
+
+            // Update Album Cover
+            if (song.cover) {
+                albumCover.src = song.cover;
+                albumCover.alt = `${song.title} Cover`;
+                albumCover.style.display = 'block';
+            } else {
+                albumCover.style.display = 'none';
+            }
+            
+            // Update Video
+            const wasPlaying = !video.paused;
+            video.src = song.video;
+            video.load();
+            if (wasPlaying) video.play();
+
+            // Update Links logic
+            const updateButton = (el, url, label, icon, isPrimary = false) => {
+                if (url && url.trim() !== '') {
+                    el.href = url;
+                    el.classList.remove('disabled');
+                } else {
+                    el.href = '#';
+                    el.classList.add('disabled');
+                }
+                
+                // Update label and icon if needed
+                const span = el.querySelector('span');
+                const img = el.querySelector('img');
+                const placeholder = el.querySelector('.icon-placeholder');
+                
+                if (span) span.innerText = label;
+                
+                if (img) {
+                    if (icon && icon.trim() !== '') {
+                        img.src = `images/${icon}`;
+                        img.style.display = 'inline-block';
+                        if (placeholder) placeholder.style.display = 'none';
+                    } else {
+                        img.style.display = 'none';
+                        if (placeholder) placeholder.style.display = 'flex';
+                    }
+                } else if (placeholder) {
+                    placeholder.style.display = 'flex';
+                }
+            };
+
+            // Reset/Clear countdown
+            clearInterval(countdownInterval);
+            countdownContainer.style.display = 'none';
+
+            const btnGrid = document.querySelector('.btn-grid');
+
+            if (isPreRelease) {
+                // YT on top, hide grid, show countdown
+                primaryLink.className = 'stream-btn youtube full-width';
+                updateButton(primaryLink, song.youtube, 'Watch on YouTube', 'social-media-icon-_0000s_0016_youtube.png');
+                primaryLink.style.display = 'flex';
+                
+                btnGrid.style.display = 'none';
+                startCountdown(song.releaseDate);
+            } else {
+                // Normal Mode: Spotify on top, show grid
+                primaryLink.className = 'stream-btn spotify full-width';
+                updateButton(primaryLink, song.spotify, 'Listen on Spotify', 'spotify.png');
+                primaryLink.style.display = 'flex';
+
+                btnGrid.style.display = 'grid';
+                updateButton(appleLink, song.apple, 'Apple Music', 'apple.svg');
+                updateButton(youtubeLink, song.youtube, 'YouTube', 'social-media-icon-_0000s_0016_youtube.png');
+                updateButton(amazonLink, song.amazon, 'Amazon', '');
+                updateButton(tidalLink, song.tidal, 'Tidal', '');
+            }
+
+            // Update URL Query String
+            if (updateURL) {
+                const url = new URL(window.location);
+                url.searchParams.set('song', song.id);
+                window.history.pushState({}, '', url);
+            }
+        }
+
+        // Initialize from URL
+        const params = new URLSearchParams(window.location.search);
+        const songParam = params.get('song');
+        if (songParam) {
+            const index = songs.findIndex(s => s.id === songParam);
+            if (index !== -1) loadSong(index, false);
+            else loadSong(0, false);
+        } else {
+            loadSong(0, false);
+        }
+
+        // Controls Logic
+        document.getElementById('next-btn').addEventListener('click', () => {
+            let next = currentSongIndex + 1;
+            if (next >= songs.length) next = 0;
+            loadSong(next);
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            let prev = currentSongIndex - 1;
+            if (prev < 0) prev = songs.length - 1;
+            loadSong(prev);
+        });
+
+        navJukebox.addEventListener('click', () => {
+            jukeboxView.style.display = 'block';
+            aboutView.style.display = 'none';
+            navJukebox.classList.add('active');
+            navAbout.classList.remove('active');
+        });
+
+        navAbout.addEventListener('click', () => {
+            jukeboxView.style.display = 'none';
+            aboutView.style.display = 'block';
+            navAbout.classList.add('active');
+            navJukebox.classList.remove('active');
+        });
+
+        // Play/Pause Logic
+        function pauseVideo() {
+            video.pause();
+            pauseBtn.style.display = 'none';
+            playBtn.style.display = 'inline-flex';
+        }
+
+        playBtn.addEventListener('click', () => {
+            video.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-flex';
+        });
+
+        pauseBtn.addEventListener('click', pauseVideo);
+
+        // Auto-pause when clicking streaming links
+        [primaryLink, appleLink, youtubeLink, amazonLink, tidalLink].forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!link.classList.contains('disabled')) {
+                    pauseVideo();
+                }
+            });
+        });
+
+        // Mute/Unmute Logic
+        muteToggle.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                muteLine.style.display = 'none';
+                muteText.innerText = 'UNMUTED';
+                muteToggle.classList.remove('is-muted');
+            } else {
+                video.muted = true;
+                muteLine.style.display = 'block';
+                muteText.innerText = 'MUTED';
+                muteToggle.classList.add('is-muted');
+            }
+        });
+
+        // Ensure pause button shows if autoplay is successful
+        video.onplay = () => {
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-flex';
+        };
+
+        // Progress Bar Logic
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        video.addEventListener('loadedmetadata', () => {
+            progressBar.max = video.duration;
+            durationDisplay.innerText = formatTime(video.duration);
+        });
+
+        video.addEventListener('timeupdate', () => {
+            if (!progressBar.classList.contains('seeking')) {
+                progressBar.value = video.currentTime;
+                currentTimeDisplay.innerText = formatTime(video.currentTime);
+            }
+        });
+
+        progressBar.addEventListener('input', () => {
+            progressBar.classList.add('seeking');
+            currentTimeDisplay.innerText = formatTime(progressBar.value);
+        });
+
+        progressBar.addEventListener('change', () => {
+            video.currentTime = progressBar.value;
+            progressBar.classList.remove('seeking');
+        });
+    </script>
 </body>
 </html>

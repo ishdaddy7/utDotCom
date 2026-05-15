@@ -581,5 +581,85 @@
             progressBar.classList.remove('seeking');
         });
     </script>
+    <!-- 100% privacy-first analytics -->
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
+    <!-- Simple Analytics Enhanced Tracking -->
+    <script>
+    (function () {
+      var eventPrefix = "click"; // Events will show as "click: Play", "click: Spotify", etc.
+
+      function bindTracking(element) {
+        if (element.dataset.simpleAnalytics) return;
+        element.dataset.simpleAnalytics = "tracked";
+
+        element.addEventListener("click", function (event) {
+          if (element.dataset.simpleAnalyticsClicked) return;
+          if (!window.sa_loaded) return;
+
+          // Try to get a clean name for the button/link
+          var name = element.textContent ? element.textContent.trim() : null;
+          if (!name || name.length === 0) {
+            name = element.getAttribute("aria-label") || element.getAttribute("id") || "unknown";
+          }
+          
+          // Clean up the name for the event title (e.g. "Listen on Spotify" -> "Spotify")
+          var cleanName = name;
+          if (name.toLowerCase().includes("spotify")) cleanName = "Spotify";
+          if (name.toLowerCase().includes("apple")) cleanName = "Apple Music";
+          if (name.toLowerCase().includes("youtube")) cleanName = "YouTube";
+          if (name.toLowerCase().includes("amazon")) cleanName = "Amazon";
+          if (name.toLowerCase().includes("tidal")) cleanName = "Tidal";
+
+          var eventName = eventPrefix + ": " + cleanName;
+
+          event.preventDefault();
+
+          // Get current song title
+          var songTitleElem = document.getElementById("song-title-text");
+          var currentSong = songTitleElem ? songTitleElem.textContent.trim() : "unknown";
+
+          var metadata = {
+            song: currentSong,
+            button: cleanName,
+            id: element.getAttribute("id"),
+            type: element.tagName.toLowerCase()
+          };
+
+          window.sa_event(eventName, metadata, function () {
+            element.dataset.simpleAnalyticsClicked = "true";
+            element.click();
+          });
+        });
+      }
+
+      function setupTracking() {
+        document.querySelectorAll("button, a.stream-btn, .nav-link").forEach(bindTracking);
+      }
+
+      if (document.readyState === "ready" || document.readyState === "complete") {
+        setupTracking();
+      } else {
+        document.addEventListener("readystatechange", function (event) {
+          if (event.target.readyState === "complete") setupTracking();
+        });
+      }
+
+      // Watch for any dynamically added elements
+      if (window.MutationObserver) {
+        var observer = new MutationObserver(function (mutations) {
+          mutations.forEach(function (mutation) {
+            mutation.addedNodes.forEach(function (node) {
+              if (node.nodeType === 1) { // Element node
+                if (node.matches("button, a.stream-btn, .nav-link")) bindTracking(node);
+                node.querySelectorAll("button, a.stream-btn, .nav-link").forEach(bindTracking);
+              }
+            });
+          });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+    })();
+    </script>
 </body>
 </html>

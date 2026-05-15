@@ -587,7 +587,7 @@
     <!-- Simple Analytics Enhanced Tracking -->
     <script>
     (function () {
-      var eventPrefix = "click"; // Events will show as "click: Play", "click: Spotify", etc.
+      var eventName = "button_click";
 
       function bindTracking(element) {
         if (element.dataset.simpleAnalytics) return;
@@ -603,15 +603,13 @@
             name = element.getAttribute("aria-label") || element.getAttribute("id") || "unknown";
           }
           
-          // Clean up the name for the event title (e.g. "Listen on Spotify" -> "Spotify")
+          // Clean up the name (e.g. "Listen on Spotify" -> "Spotify")
           var cleanName = name;
           if (name.toLowerCase().includes("spotify")) cleanName = "Spotify";
           if (name.toLowerCase().includes("apple")) cleanName = "Apple Music";
           if (name.toLowerCase().includes("youtube")) cleanName = "YouTube";
           if (name.toLowerCase().includes("amazon")) cleanName = "Amazon";
           if (name.toLowerCase().includes("tidal")) cleanName = "Tidal";
-
-          var eventName = eventPrefix + ": " + cleanName;
 
           event.preventDefault();
 

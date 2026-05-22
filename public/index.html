@@ -102,7 +102,7 @@
                 </div>
 
                 <div id="countdown-timer" class="countdown-container" style="display: none;">
-                    <h3 class="countdown-label" id="countdown-date-label">COMING MAY 21 2026</h3>
+                    <h3 class="countdown-label" id="countdown-date-label">COMING MAY 22 2026</h3>
                     <div class="timer-grid">
                         <div class="timer-item"><span id="days">00</span><small>DAYS</small></div>
                         <div class="timer-item"><span id="hours">00</span><small>HOURS</small></div>
@@ -197,12 +197,11 @@
                 title: "LET'S GO!",
                 video: 'https://unicorntaxidermy.com/images/letsgo_bg.mp4',
                 cover: 'https://unicorntaxidermy.com/images/letsgo_cover.png',
-                spotify: 'https://open.spotify.com/track/0XCNpIcKU4W38Xq9k5cpFM',
-                apple: 'https://music.apple.com/us/album/lets-go-single/1568456789',
+                spotify: 'https://open.spotify.com/track/2cox7Uh7iVLp4EjE1ty6Mz?si=60f308a9e7d44c7a',
+                apple: 'https://music.apple.com/us/song/lets-go/1890274629',
                 youtube: 'https://www.youtube.com/watch?v=TNPdfavtYJ4',
-                amazon: 'https://music.amazon.com/albums/B095Y5Y9H2',
-                tidal: 'https://tidal.com/browse/track/185562095',
-                releaseDate: '2026-05-21T04:00:00-07:00' // PDT (UTC-7)
+                amazon: 'https://music.amazon.com/albums/B0GVVMZWJD',
+                tidal: 'https://tidal.com/track/512642981/'
             },
             {
                 id: 'touch-the-stars',
@@ -333,7 +332,7 @@
             clearInterval(countdownInterval);
             const target = new Date(targetDate).getTime();
             
-            // Format label: "COMING MAY 21 2026"
+            // Format label: "COMING MAY 22 2026"
             const options = { month: 'long', day: 'numeric', year: 'numeric' };
             const dateStr = new Date(targetDate).toLocaleDateString('en-US', options).toUpperCase();
             document.getElementById('countdown-date-label').innerText = `COMING ${dateStr}`;

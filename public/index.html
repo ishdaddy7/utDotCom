@@ -629,6 +629,11 @@
             type: element.tagName.toLowerCase()
           };
 
+          // Track with Segment
+          if (window.analytics) {
+            window.analytics.track(eventName, metadata);
+          }
+
           window.sa_event(eventName, metadata, function () {
             element.dataset.simpleAnalyticsClicked = "true";
             element.click();
